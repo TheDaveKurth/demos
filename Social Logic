@@ -72,4 +72,9 @@ Let's open another tab and go to msit.powerbi.com
 		Select all the fields we created 
       		Now select what goes in these fields
 
+Now it should already work and we can configure the PowerBI report. I suggest on the location map view, 
+we use followers as size of the bubble to show the impat this tweet hat. We can also define custome coloring and highlight
+positive sentiment with green, neutral with yellow and bad with read. 
 
+After putting this togehter, we can now also add a condition in the logic app and publish bad tweet for example to teams that
+everyone in our team is aware of bad tweets that are being published so we can take action. 
