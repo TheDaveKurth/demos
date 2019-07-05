@@ -69,5 +69,7 @@ Let's open another tab and go to msit.powerbi.com
 		Under Workspace select "My Workspace"
 		Dataset select the one you just created. In my case "SummerReadyVegas"
 		In the table field select "RealTimeData"
-			Select all the fields we created 
-      Now select what goes in these fields
+		Select all the fields we created 
+      		Now select what goes in these fields
+
+
