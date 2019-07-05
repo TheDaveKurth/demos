@@ -1,0 +1,73 @@
+Prerequisites:
+	- Twitter Account
+	- Azure Account
+	- PowerBI Pro account
+
+Go to the Azure Portal (https://www.azure.com)
+
+Create a resource
+	Search for: "logic app"
+	Click create
+		Give a name eg. SummerReadyVegas
+		Create a new Resource Group. We will put all resource we create in this group. So give it a name you can remember. Eg. SummerReadyVegas
+		Location: West US
+		Log Analytics: "Off"
+		Click create
+
+Click to create another resource
+	Search for "Text Analytics"
+	Click create
+		Give a name eg. SummerReadyVegas
+		Location: West US
+		Pricing Tier: F0 (if available)
+		Resource group: Select the one you created. In my case "SummerReadyVegas"
+		Click create
+
+Let's go back to our Resource Group
+	Open the Logic Apps Designer
+	Select "Blank Logic App"
+		As trigger select Twitter
+		You then have to login with a Twitter account to authorize the logic apps to access your twitter account
+		Now you can set the Search text. #Anything you like
+		Interval I suggest you set to 15 Seconds
+		
+		Add a new step. This time we select Text Analytics.
+		Select Detect Sentiment
+	
+	Open a second tab with the portal open, but don't change the existing one. 
+	Go to our resource group
+	Select the Text Analytic Service "Cognitive Service"
+	Under step 1 you can click on "Keys"
+	Copy Key 1
+	Head back to the other tab with the logic app
+	
+		Paste the key to the "Account Key" field
+		Connection Name can be anything
+		Site URL. If you deployed it in westus, then you're good. Otherwise you would need to add the URL here.
+		Click create
+		Select the parameter "Text"
+		Text to analyze we select "Original tweet text"
+		
+Let's open another tab and go to msit.powerbi.com
+	Go to your workspace (your picture or initial shown on the left hand side)
+	Click on "Datasets"
+	Click "Create" top right corner
+	Select "Streaming Dataset"
+	Select "API"; click "Next"
+  
+	Name your Dataset "SummerReadyVegas"
+		First field "TweetText" "Text"
+		Second field "Created at" "DateTime"
+		Third field "Score" "Number"
+		Fourth field "Location" "Text"
+		Fifth field "Followers" "Number"
+    
+    Go back to the logic apps tab
+		Select "PowerBI"
+		Select "Add rows to a dataset (preview)"
+		Now you have to sign to your PowerBI account
+		Under Workspace select "My Workspace"
+		Dataset select the one you just created. In my case "SummerReadyVegas"
+		In the table field select "RealTimeData"
+			Select all the fields we created 
+      Now select what goes in these fields
